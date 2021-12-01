@@ -46,6 +46,13 @@ function TodoList() {
         console.log(description)        
     }
 
+    const handleSubmit = () => {        
+        let endPoint = '/api/add_todo'
+        let data = {'name': todo, 'description': description}
+        fetch(endPoint, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},body: JSON.stringify(data)}).then((res) => res.json())
+            .then((data) => setData(data));                      
+    } 
+
     const listItems = (data || []).map((element) =>
         <div  key={element.id} className="text-center">
             <Accordion className="w-75 mx-auto mb-2 mt-3" defaultActiveKey="1">
@@ -84,7 +91,7 @@ function TodoList() {
                     <Modal.Title className="mx-auto">Add Todo item</Modal.Title>
                 </Modal.Header>
                     <Modal.Body>
-                    <form className="w-75 mx-auto form-add-todo">     
+                    <form className="w-75 mx-auto form-add-todo" onSubmit={handleSubmit}>     
                         <input className="col-12 m-1" type="text" name={todo} onChange={handleNameChange} placeholder="Item Name" required/>
                         <input className="col-12 m-1" type="text" name={description} onChange={handleDescriptionChange} placeholder="description" required/>  
                         <input className="col-12 btn bg-dark text-light mt-2" type="submit" value="Submit" />                
