@@ -6,9 +6,9 @@ import json
 # Create your views here.
 def home(request):
     ''' View to return all Todo objects'''
-    
-    data = serialize('json', Todo.objects.all())     
-    
+
+    data = serialize('json', Todo.objects.all())
+
     return HttpResponse(data,
                 content_type='application/json')
 
@@ -16,7 +16,7 @@ def home(request):
 def status(request, todo_id):
     ''' View to update status of object'''
 
-    todo = get_object_or_404(Todo, id=todo_id).
+    todo = get_object_or_404(Todo, id=todo_id)
     if todo.completed:
         todo.completed = False
         todo.save()
