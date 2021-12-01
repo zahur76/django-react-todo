@@ -47,9 +47,11 @@ INSTALLED_APPS = [
     'todo',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000'
-]
+
+
+ALLOWED_HOSTS = ['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
