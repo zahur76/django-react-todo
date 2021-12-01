@@ -57,4 +57,9 @@ def add_todo(request):
         return HttpResponse(data,
                     content_type='application/json')
 
-catchall = TemplateView.as_view(template_name='index.html')
+
+def home(request):
+    ''' View to update status of object'''
+    
+
+    return render(request, 'index.html')
