@@ -1,5 +1,4 @@
-from django.shortcuts import render
-from .serializers import TodoSerializer
+from django.shortcuts import render, HttpResponse
 from django.core.serializers import serialize
 from .models import Todo
 
@@ -13,4 +12,5 @@ def home(request):
         'todo': todo,
         'data': data,
     }
-    return render(request, 'home/index.html', context)
+    return HttpResponse(data,
+                content_type='application/json')
