@@ -1,0 +1,1 @@
+Django React app. Django backend and react frontend

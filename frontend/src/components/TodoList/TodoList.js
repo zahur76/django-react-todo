@@ -87,16 +87,16 @@ function TodoList() {
                 {listItems}
             </div>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header className="text-center p-2" closeButton>
-                    <Modal.Title className="mx-auto">Add Todo item</Modal.Title>
-                </Modal.Header>
-                    <Modal.Body>
-                    <form className="w-75 mx-auto form-add-todo" onSubmit={handleSubmit}>     
-                        <input className="col-12 m-1" type="text" name={todo} onChange={handleNameChange} placeholder="Item Name" required/>
-                        <input className="col-12 m-1" type="text" name={description} onChange={handleDescriptionChange} placeholder="description" required/>  
-                        <input className="col-12 btn bg-dark text-light mt-2" type="submit" value="Submit" />                
-                    </form>  
-                    </Modal.Body>                
+                <Modal.Header className="p-2 mx-auto" closeButton>
+                    <Modal.Title>Add Todo item</Modal.Title>                    
+                </Modal.Header>                
+                <Modal.Body>
+                <form className="w-75 mx-auto form-add-todo" onSubmit={handleSubmit}>     
+                    <input className="col-12 m-1" type="text" name={todo} onChange={handleNameChange} placeholder="Item Name" required/>
+                    <input className="col-12 m-1" type="text" name={description} onChange={handleDescriptionChange} placeholder="description" required/>  
+                    <input className="col-12 btn bg-dark text-light mt-2" type="submit" value="Submit" />                
+                </form>  
+                </Modal.Body>                
             </Modal>
         </div>
       
