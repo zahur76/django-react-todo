@@ -2,10 +2,17 @@ import { React, useState, useEffect} from "react";
 import './TodoList.css';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button';
 import Accordion from 'react-bootstrap/Accordion'
 
 function TodoList() {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [todo, setName] = useState(null);
+    const [description, setDescription] = useState(null);
+    
     const [data, setData] = useState(null);       
 
     useEffect(() => {
@@ -27,6 +34,16 @@ function TodoList() {
         .then((data) => setData(data)).catch((error) => {
             console.log(error);
         });
+    }
+
+    const handleNameChange = (event) => {
+        setName(event.target.value);
+        console.log(todo)        
+    }
+
+    const handleDescriptionChange = (event) => {
+        setDescription(event.target.value);
+        console.log(description)        
     }
 
     const listItems = (data || []).map((element) =>
@@ -57,9 +74,25 @@ function TodoList() {
         </div>
     ); 
     return (
-        <div className="Todo">
-            {listItems}
+        <div>
+            <div className="Todo">
+                <Button onClick={handleShow} className="m-1 text-light h5 mt-2 w-75 mx-auto add-todo">Add Todo</Button>
+                {listItems}
+            </div>
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header className="text-center p-2" closeButton>
+                    <Modal.Title className="mx-auto">Add Todo item</Modal.Title>
+                </Modal.Header>
+                    <Modal.Body>
+                    <form className="w-75 mx-auto form-add-todo">     
+                        <input className="col-12 m-1" type="text" name={todo} onChange={handleNameChange} placeholder="Item Name" required/>
+                        <input className="col-12 m-1" type="text" name={description} onChange={handleDescriptionChange} placeholder="description" required/>  
+                        <input className="col-12 btn bg-dark text-light mt-2" type="submit" value="Submit" />                
+                    </form>  
+                    </Modal.Body>                
+            </Modal>
         </div>
+      
     );
 }
 export default TodoList;

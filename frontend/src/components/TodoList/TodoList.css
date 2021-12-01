@@ -1,0 +1,16 @@
+.add-todo {
+    background: rgb(138, 131, 134);
+    border: none;    
+}
+
+.add-todo:hover {
+    background: rgb(177, 173, 175);
+}
+
+.modal {
+    top: 20%;
+}
+
+.modal-content {
+    background-color: rgba(199, 194, 194, 0.7);
+}
