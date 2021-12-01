@@ -1,19 +1,29 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.core.serializers import serialize
 from .models import Todo
 import json
 
 # Create your views here.
 def home(request):
-    print('zahur')
-    data2 = json.dumps({'zahur': 'banana'})
-    data = serialize('json', Todo.objects.all())
-    todo = Todo.objects.all()
+    ''' View to return all Todo objects'''
     
-    context = {
-        'todo': todo,
-        'data': data,
-    }
-    print(data2)
+    data = serialize('json', Todo.objects.all())     
+    
+    return HttpResponse(data,
+                content_type='application/json')
+
+# Create your views here.
+def status(request, todo_id):
+    ''' View to update status of object'''
+
+    todo = get_object_or_404(Todo, id=todo_id).
+    if todo.completed:
+        todo.completed = False
+        todo.save()
+    else:
+        todo.completed = True
+        todo.save()
+    data = serialize('json', Todo.objects.all())
+
     return HttpResponse(data,
                 content_type='application/json')

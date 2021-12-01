@@ -15,8 +15,8 @@ function TodoList() {
         });        
     }, [])
     
-    const updateStatus = () => {
-        fetch("/api/status").then((res) => res.json())
+    const updateStatus = (event) => {        
+        fetch(`/api/status/${event.target.value}`).then((res) => res.json())
         .then((data) => setData(data)).catch((error) => {
             console.log(error);
         });
@@ -41,7 +41,7 @@ function TodoList() {
                             <Col xs={6}>{element.fields.completed ? 'Complete' : 'Pending'}</Col>
                             <Col className="buttons mt-2" xs={12}>                                
                                 <Button className="m-1 bg-danger text-light text-right">Remove</Button>
-                                <Button onClick={updateStatus} className="m-1 bg-success text-light text-right">Update</Button>                                
+                                <Button onClick={updateStatus} value={element.pk} className="m-1 bg-success text-light text-right">Update</Button>                                
                             </Col>                                                                                   
                         </Row>
                     </Accordion.Body>
