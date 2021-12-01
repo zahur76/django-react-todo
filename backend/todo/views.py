@@ -27,3 +27,14 @@ def status(request, todo_id):
 
     return HttpResponse(data,
                 content_type='application/json')
+
+# Create your views here.
+def remove_todo(request, todo_id):
+    ''' View to update status of object'''
+
+    todo = get_object_or_404(Todo, id=todo_id)
+    todo.delete()
+    data = serialize('json', Todo.objects.all())
+
+    return HttpResponse(data,
+                content_type='application/json')

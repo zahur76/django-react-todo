@@ -22,8 +22,8 @@ function TodoList() {
         });
     }
 
-    constremoveTodo = (event) => {        
-        fetch(`/api/status/remove/${event.target.value}`).then((res) => res.json())
+    const removeTodo = (event) => {        
+        fetch(`/api/remove/${event.target.value}`).then((res) => res.json())
         .then((data) => setData(data)).catch((error) => {
             console.log(error);
         });
