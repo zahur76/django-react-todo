@@ -3,6 +3,10 @@ from django.db import models
 # Create your models here.
 
 class Todo(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Todo"
+
     title = models.CharField(max_length=120)
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
