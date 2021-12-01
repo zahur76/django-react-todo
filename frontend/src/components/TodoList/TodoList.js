@@ -14,7 +14,14 @@ function TodoList() {
             console.log(error);
         });        
     }, [])
-    console.log(data)
+    
+    const updateStatus = () => {
+        fetch("/api/status").then((res) => res.json())
+        .then((data) => setData(data)).catch((error) => {
+            console.log(error);
+        });
+    }
+
     const listItems = (data || []).map((element) =>
         <div  key={element.id} className="text-center">
             <Accordion className="w-75 mx-auto mb-2 mt-3" defaultActiveKey="1">
@@ -34,7 +41,7 @@ function TodoList() {
                             <Col xs={6}>{element.fields.completed ? 'Complete' : 'Pending'}</Col>
                             <Col className="buttons mt-2" xs={12}>                                
                                 <Button className="m-1 bg-danger text-light text-right">Remove</Button>
-                                <Button className="m-1 bg-success text-light text-right">Update</Button>                                
+                                <Button onClick={updateStatus} className="m-1 bg-success text-light text-right">Update</Button>                                
                             </Col>                                                                                   
                         </Row>
                     </Accordion.Body>
