@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse,get_object_or_404
 from django.core.serializers import serialize
 from .models import Todo
+from django.views.decorators.http import require_POST
+from django.views.decorators.csrf import csrf_exempt
 import json
 
 # Create your views here.
@@ -38,3 +40,19 @@ def remove_todo(request, todo_id):
 
     return HttpResponse(data,
                 content_type='application/json')
+
+# Create your views here.
+@require_POST
+@csrf_exempt
+def add_todo(request):
+    ''' View to add new todo object'''    
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        print(data['name'])
+        Todo.objects.create(title=data['name'], description=data['description']) 
+
+        data = serialize('json', Todo.objects.all())
+
+        return HttpResponse(data,
+                    content_type='application/json')
+
