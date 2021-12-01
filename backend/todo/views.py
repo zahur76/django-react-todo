@@ -4,6 +4,7 @@ from .models import Todo
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.views.generic import TemplateView
 
 # Create your views here.
 def home(request):
@@ -56,3 +57,4 @@ def add_todo(request):
         return HttpResponse(data,
                     content_type='application/json')
 
+catchall = TemplateView.as_view(template_name='index.html')
