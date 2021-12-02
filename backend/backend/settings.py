@@ -141,9 +141,9 @@ STATIC_URL = '/static/'
 
 # extra static file location when running collecstatic where django doesnt look
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
+    os.path.join(ROOT_DIR, 'build/static')
 ]
-
+print(os.path.join(ROOT_DIR, 'build/static'))
 # The absolute path to the directory where collectstatic will collect static files for deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
