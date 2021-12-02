@@ -15,7 +15,6 @@ def home(request):
     return HttpResponse(data,
                 content_type='application/json')
 
-# Create your views here.
 def status(request, todo_id):
     ''' View to update status of object'''
 
@@ -31,7 +30,6 @@ def status(request, todo_id):
     return HttpResponse(data,
                 content_type='application/json')
 
-# Create your views here.
 def remove_todo(request, todo_id):
     ''' View to update status of object'''
 
@@ -42,17 +40,25 @@ def remove_todo(request, todo_id):
     return HttpResponse(data,
                 content_type='application/json')
 
-# Create your views here.
 @require_POST
 @csrf_exempt
 def add_todo(request):
-    ''' View to add new todo object'''    
+    ''' View to add new todo object'''
     if request.method == 'POST':
         data = json.loads(request.body)
         print(data['name'])
-        Todo.objects.create(title=data['name'], description=data['description']) 
+        Todo.objects.create(title=data['name'], description=data['description'])
 
         data = serialize('json', Todo.objects.all().order_by('id'))
 
         return HttpResponse(data,
                     content_type='application/json')
+
+def login(request):
+    ''' View to authenticate login'''
+
+    print('working')
+    data = {'login': True }
+
+    return HttpResponse(json.dumps(data),
+                content_type='application/json')
