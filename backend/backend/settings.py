@@ -47,8 +47,6 @@ INSTALLED_APPS = [
     'todo',
 ]
 
-
-
 ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -56,7 +54,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -140,10 +138,12 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# extra static file location when running collecstatic where django doesnt look
 STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, 'frontend/build/static')
 ]
 
+# The absolute path to the directory where collectstatic will collect static files for deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
