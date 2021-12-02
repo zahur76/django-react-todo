@@ -87,7 +87,7 @@ function TodoList() {
                 {listItems}
             </div>
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header className="p-2 mx-auto" closeButton>
+                <Modal.Header className="p-2" closeButton>
                     <Modal.Title>Add Todo item</Modal.Title>                    
                 </Modal.Header>                
                 <Modal.Body>
