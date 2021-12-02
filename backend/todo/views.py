@@ -10,7 +10,7 @@ import json
 def home(request):
     ''' View to return all Todo objects'''
 
-    data = serialize('json', Todo.objects.all())
+    data = serialize('json', Todo.objects.all().order_by('id'))
 
     return HttpResponse(data,
                 content_type='application/json')
@@ -26,7 +26,7 @@ def status(request, todo_id):
     else:
         todo.completed = True
         todo.save()
-    data = serialize('json', Todo.objects.all())
+    data = serialize('json', Todo.objects.all().order_by('id'))
 
     return HttpResponse(data,
                 content_type='application/json')
@@ -37,7 +37,7 @@ def remove_todo(request, todo_id):
 
     todo = get_object_or_404(Todo, id=todo_id)
     todo.delete()
-    data = serialize('json', Todo.objects.all())
+    data = serialize('json', Todo.objects.all().order_by('id'))
 
     return HttpResponse(data,
                 content_type='application/json')
@@ -52,7 +52,7 @@ def add_todo(request):
         print(data['name'])
         Todo.objects.create(title=data['name'], description=data['description']) 
 
-        data = serialize('json', Todo.objects.all())
+        data = serialize('json', Todo.objects.all().order_by('id'))
 
         return HttpResponse(data,
                     content_type='application/json')
