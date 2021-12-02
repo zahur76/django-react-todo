@@ -24,8 +24,9 @@ function Header() {
     }   
 
     const handleLoginSubmit = (e) => {
-        e.preventDefault()        
-        fetch("/api/login").then((res) => res.json())
+        e.preventDefault()
+        let data = {'username': username, 'password': password}       
+        fetch("/api/login", {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'}, body: JSON.stringify(data)}).then((res) => res.json())
         .then((data) => [setShow(false), localStorage.setItem("login", data.login)]).then(() => { 
             setLogin(localStorage.getItem("login"))
             window.location.reload(false);

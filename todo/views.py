@@ -4,6 +4,7 @@ from .models import Todo
 from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 import json
+from django.contrib.auth import authenticate, login, logout, get_user_model
 
 
 # Create your views here.
@@ -45,8 +46,7 @@ def remove_todo(request, todo_id):
 def add_todo(request):
     ''' View to add new todo object'''
     if request.method == 'POST':
-        data = json.loads(request.body)
-        print(data['name'])
+        data = json.loads(request.body)        
         Todo.objects.create(title=data['name'], description=data['description'])
 
         data = serialize('json', Todo.objects.all().order_by('id'))
@@ -54,19 +54,30 @@ def add_todo(request):
         return HttpResponse(data,
                     content_type='application/json')
 
+
+@require_POST
+@csrf_exempt
 def login(request):
     ''' View to authenticate login'''
-
-    print('working')
-    data = {'login': True}
-
-    return HttpResponse(json.dumps(data),
-                content_type='application/json')
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        username = data['username']
+        password = data['password']
+        user = authenticate(request, username=username, password=password)
+        print(password)
+        print(username)
+        if user is not None:
+            print('all good')
+            data = {'login': True}
+            return HttpResponse(json.dumps(data),
+                    content_type='application/json')
+        data = {'login': False}
+        return HttpResponse(json.dumps(data),
+                    content_type='application/json')
 
 def logout(request):
     ''' View to authenticate login'''
-
-    print('working logout')
+    
     data = {'login': False}
 
     return HttpResponse(json.dumps(data),
