@@ -12,30 +12,29 @@ function Header() {
 
     const [username, setUsername] = useState(null);
     const [password, setPassword] = useState(null);
+    const [login, setLogin] = useState(localStorage.getItem("login"));
 
     const handleUsernameChange = (event) => {
-        setUsername(event.target.value)
-        console.log(username)        
+        setUsername(event.target.value)              
     }
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value)
-        console.log(password)        
+        setPassword(event.target.value)                
     }
 
     const handleLoginSubmit = (e) => {
         e.preventDefault()        
         fetch("/api/login").then((res) => res.json())
-        .then((data) => [setLogin(data), localStorage.setItem("login", true)]).catch((error) => {            
-            setShow(false)
+        .then((data) => [setShow(false), localStorage.setItem("login", data.login)]).then(() => { 
+            setLogin(localStorage.getItem("login"))
         });                             
     }
 
     const handleLogout = (e) => {
-        e.preventDefault()        
+        e.preventDefault()               
         fetch("/api/logout").then((res) => res.json())
-        .then((data) => [setLogin(data), localStorage.setItem("login", false)]).catch((error) => {            
-            setShow(false)
+        .then((data) => [localStorage.setItem("login", false)]).then(() => {            
+            setLogin(localStorage.getItem("login"))
         });                             
     }
 
@@ -44,7 +43,7 @@ function Header() {
             <Row className="Header m-0 bg-dark text-white p-1">
                 <Col className="h1 my-auto" xs={0} md={2}></Col>
                 <Col className="h1 my-auto" xs={9}md={8}>Django-React Todo API</Col>
-                <Col className="my-auto" xs={3} md={2}><div onClick={handleShow} className="btn text-light login-text">{localStorage.getItem("login") ? 'Logout' : 'Login'}</div></Col>
+                <Col className="my-auto" xs={3} md={2}><div>{login==='true' ? <div onClick={handleLogout} className="btn text-light login-text">Logout</div> : <div onClick={handleShow} className="btn text-light login-text">Login</div>}</div></Col>
             </Row>
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header className="p-2" closeButton>

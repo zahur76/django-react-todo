@@ -7,4 +7,5 @@ urlpatterns = [
     path('api/remove/<int:todo_id>', views.remove_todo, name='remove_todo'),
     path('api/add_todo', views.add_todo, name='add_todo'),
     path('api/login', views.login, name='login'),
+    path('api/logout', views.logout, name='logout'),
 ]

@@ -58,7 +58,16 @@ def login(request):
     ''' View to authenticate login'''
 
     print('working')
-    data = {'login': True }
+    data = {'login': True}
+
+    return HttpResponse(json.dumps(data),
+                content_type='application/json')
+
+def logout(request):
+    ''' View to authenticate login'''
+
+    print('working logout')
+    data = {'login': False}
 
     return HttpResponse(json.dumps(data),
                 content_type='application/json')
