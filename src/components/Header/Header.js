@@ -19,14 +19,16 @@ function Header() {
     }
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value)                
-    }
+        setPassword(event.target.value)
+                
+    }   
 
     const handleLoginSubmit = (e) => {
         e.preventDefault()        
         fetch("/api/login").then((res) => res.json())
         .then((data) => [setShow(false), localStorage.setItem("login", data.login)]).then(() => { 
             setLogin(localStorage.getItem("login"))
+            window.location.reload(false);
         });                             
     }
 
@@ -35,6 +37,7 @@ function Header() {
         fetch("/api/logout").then((res) => res.json())
         .then((data) => [localStorage.setItem("login", false)]).then(() => {            
             setLogin(localStorage.getItem("login"))
+            window.location.reload(false);
         });                             
     }
 

@@ -12,8 +12,13 @@ function TodoList() {
     const handleShow = () => setShow(true);
     const [todo, setName] = useState(null);
     const [description, setDescription] = useState(null);
+    const [login, setLogin] = useState(null)
     
-    const [data, setData] = useState(null);       
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        setLogin((localStorage.getItem("login")))
+    }, [])
 
     useEffect(() => {
         fetch("/api").then((res) => res.json())
@@ -51,7 +56,7 @@ function TodoList() {
         let data = {'name': todo, 'description': description}
         fetch(endPoint, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},body: JSON.stringify(data)}).then((res) => res.json())
             .then((data) => setData(data));                      
-    } 
+    }    
 
     const listItems = (data || []).map((element) =>
         <div  key={element.pk} className="text-center">
@@ -70,10 +75,12 @@ function TodoList() {
                             <Col className="border-bottom border-dark mb-2" xs={12}></Col>
                             <Col xs={6}>{element.fields.created_at.substring(0,10)}</Col>                            
                             <Col xs={6}>{element.fields.completed ? 'Complete' : 'Pending'}</Col>
+                            {login==='true' ? 
                             <Col className="buttons mt-2" xs={12}>                                
                                 <Button onClick={removeTodo} value={element.pk} className="m-1 bg-danger text-light text-right">Remove</Button>
                                 <Button onClick={updateStatus} value={element.pk} className="m-1 bg-success text-light text-right">Update</Button>                                
-                            </Col>                                                                                   
+                            </Col>
+                            : <div></div>}                                                                                  
                         </Row>
                     </Accordion.Body>
                 </Accordion.Item>
@@ -81,9 +88,9 @@ function TodoList() {
         </div>
     ); 
     return (
-        <div>
+        <div>  
             <div className="Todo">
-                <Button onClick={handleShow} className="m-1 text-light h5 mt-3 w-75 mx-auto add-todo">Add Todo</Button>
+                {login==='true' ? <Button onClick={handleShow} className="m-1 text-light h5 mt-3 w-75 mx-auto add-todo">Add Item</Button> : <div></div>}
                 {listItems}
             </div>
             <Modal show={show} onHide={handleClose}>
