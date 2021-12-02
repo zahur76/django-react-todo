@@ -1,0 +1,15 @@
+@media screen and (max-width: 768px){
+    .h1 {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .h1 {
+        font-size: 18px !important;
+    }
+
+    .login-text {
+        font-size: 14px;
+    }
+}

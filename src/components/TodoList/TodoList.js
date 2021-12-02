@@ -54,7 +54,7 @@ function TodoList() {
     } 
 
     const listItems = (data || []).map((element) =>
-        <div  key={element.id} className="text-center">
+        <div  key={element.pk} className="text-center">
             <Accordion className="w-75 mx-auto mb-2 mt-3" defaultActiveKey="1">
                 <Accordion.Item eventKey="0">
                         <Accordion.Header>
@@ -83,7 +83,7 @@ function TodoList() {
     return (
         <div>
             <div className="Todo">
-                <Button onClick={handleShow} className="m-1 text-light h5 mt-2 w-75 mx-auto add-todo">Add Todo</Button>
+                <Button onClick={handleShow} className="m-1 text-light h5 mt-3 w-75 mx-auto add-todo">Add Todo</Button>
                 {listItems}
             </div>
             <Modal show={show} onHide={handleClose}>

@@ -22,3 +22,9 @@
 .accordion-body {
     background-color: rgb(243, 239, 236);
 }
+
+@media screen and (max-width: 576px){
+    .h5 {
+        font-size: 16px !important;
+    }
+}
