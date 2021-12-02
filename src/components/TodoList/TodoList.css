@@ -17,6 +17,7 @@
 
 .accordion-button {
     background-color: rgb(228, 224, 222);
+    border: 1px solid black;
 }
 
 .accordion-body {
