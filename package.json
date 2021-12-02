@@ -1,8 +1,5 @@
 {
   "name": "frontend",
-  "engines": {
-    "node": ">=13.14.0"
-   },
   "homepage": ".",
   "version": "0.1.0",
   "private": true,
@@ -21,7 +18,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "cd frontend react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },  
