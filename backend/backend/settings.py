@@ -67,7 +67,7 @@ ROOT_URLCONF = 'backend.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'build')],
+        'DIRS': [os.path.join(ROOT_DIR, 'build')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -143,7 +143,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(ROOT_DIR, 'build/static')
 ]
-print(os.path.join(ROOT_DIR, 'build/static'))
+
 # The absolute path to the directory where collectstatic will collect static files for deployment
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
