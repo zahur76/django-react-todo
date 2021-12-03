@@ -1,6 +1,6 @@
 html, body, #root, .App {  
   height: 100%;
-  background:lightgray; 
+  background:url('../media/death.jpeg') 
 }
 
 .App {
