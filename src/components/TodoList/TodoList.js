@@ -15,6 +15,8 @@ function TodoList() {
     const [login, setLogin] = useState(null)
     
     const [data, setData] = useState(null);
+    const [search, setSearch] = useState(null);
+        
 
     useEffect(() => {
         setLogin((localStorage.getItem("login")))
@@ -22,7 +24,7 @@ function TodoList() {
 
     useEffect(() => {
         fetch("/api").then((res) => res.json())
-        .then((data) => setData(data)).catch((error) => {
+        .then((data) => [setData(data), setSearch(data)]).catch((error) => {
             console.log(error);
         });        
     }, [])
@@ -56,6 +58,19 @@ function TodoList() {
         let data = {'name': todo, 'description': description}
         fetch(endPoint, {method: 'POST', headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},body: JSON.stringify(data)}).then((res) => res.json())
             .then((data) => setData(data));                      
+    }
+    
+    const handleSearchBar = (event) => {
+        let allItems  = search        
+        let term = event.target.value        
+        let newList = []    
+        allItems.map(element=>{        
+            if(((element.fields.title).toLowerCase()).includes(term.toLowerCase())){
+                newList.push(element)          
+                           
+            }                                                 
+        })
+        setData(newList)                   
     }    
 
     const listItems = (data || []).map((element) =>
@@ -92,7 +107,7 @@ function TodoList() {
             <div className="Todo">
                 {login==='true' ? <Button onClick={handleShow} className="m-1 text-light h5 mt-3 w-75 mx-auto add-todo">Add Item</Button> : <div></div>}
                 <form className="w-75 mx-auto search bar mt-3">     
-                    <input className="col-12 m-1" type="text" placeholder="Search Todo" required/>
+                    <input className="col-12 m-1" type="text" onChange={handleSearchBar} placeholder="Search Todo" required/>
                 </form>
                 {listItems}
             </div>
