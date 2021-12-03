@@ -172,10 +172,10 @@ if 'USE_AWS' in os.environ:
 
 
     # Static and media files
-    # To allow django-admin collectstatic to automatically put your static files in your bucket
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    # To allow django-admin collectstatic to automatically put your static files in your bucket    
+    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static' # store files under directory `static/` in bucket `my-app-bucket`
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
     MEDIAFILES_LOCATION = 'media' # store files under directory `media/` in bucket `my-app-bucket`
 
     # Override static and media URLs in production
