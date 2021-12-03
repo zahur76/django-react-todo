@@ -106,9 +106,11 @@ function TodoList() {
         <div>  
             <div className="Todo">
                 {login==='true' ? <Button onClick={handleShow} className="m-1 text-light h5 mt-3 w-75 mx-auto add-todo">Add Item</Button> : <div></div>}
-                <form className="w-75 mx-auto search bar mt-3">     
-                    <input className="col-12 m-1" type="text" onChange={handleSearchBar} placeholder="Search Todo" required/>
-                </form>
+                {data ? <form className="w-75 mx-auto search bar mt-3">     
+                            <input className="col-12 m-1" type="text" onChange={handleSearchBar} placeholder="Search Todo" required/>
+                        </form>
+                : []}
+                
                 {listItems}
             </div>
              
