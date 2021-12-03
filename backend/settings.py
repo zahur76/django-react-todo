@@ -142,7 +142,7 @@ USE_TZ = True
 # The file storage engine to use when collecting static files with the collectstatic management command.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_URL = '/static/'
+STATIC_URL = 'zahur'
 
 # extra static file location when running collecstatic where django doesnt look since not tied up to app
 STATICFILES_DIRS = [
@@ -151,7 +151,7 @@ STATICFILES_DIRS = [
 
 # The absolute path to the directory where collectstatic will collect static files for deployment
 # www.mysite.com/static/
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
