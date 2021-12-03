@@ -142,11 +142,11 @@ USE_TZ = True
 # The file storage engine to use when collecting static files with the collectstatic management command.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 
 # extra static file location when running collecstatic where django doesnt look since not tied up to app
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static'), os.path.join(BASE_DIR, 'src/components')
+    os.path.join(BASE_DIR, 'build/static')
 ]
 
 # The absolute path to the directory where collectstatic will collect static files for deployment
