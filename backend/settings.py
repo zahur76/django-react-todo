@@ -140,7 +140,7 @@ USE_TZ = True
 
 
 # The file storage engine to use when collecting static files with the collectstatic management command.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
