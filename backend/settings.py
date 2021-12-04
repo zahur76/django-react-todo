@@ -140,7 +140,7 @@ USE_TZ = True
 
 
 # The file storage engine to use when collecting static files with the collectstatic management command.
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
 
@@ -151,7 +151,7 @@ STATICFILES_DIRS = [
 
 # The absolute path to the directory where collectstatic will collect static files for deployment
 # www.mysite.com/static/ 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')# used with whitenoise
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')# used with whitenoise
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -175,12 +175,12 @@ if 'USE_AWS' in os.environ:
     # To allow django-admin collectstatic to automatically put your static files in your bucket    
     STATICFILES_STORAGE = 'custom_storages.StaticStorage'
     STATICFILES_LOCATION = 'static' # store files under directory `static/` in bucket `my-app-bucket`
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-    MEDIAFILES_LOCATION = 'media' # store files under directory `media/` in bucket `my-app-bucket`
+    # DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
+    # MEDIAFILES_LOCATION = 'media' # store files under directory `media/` in bucket `my-app-bucket`
 
     # Override static and media URLs in production
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
+    # STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
+    # MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
     # https://django-react-todo.s3.amazonaws.com/media/death.jpeg
 
